@@ -1,7 +1,7 @@
-Formulaire de Diagnostic de la Tuberculose
+Formulaire de Diagnostic de la Tuberculose\t
 Ce projet est une application web conçue pour collecter des informations sur les patients et télécharger des images afin d'aider au diagnostic de la tuberculose. Développée avec Flask et intégrée à un modèle d'apprentissage automatique, l'application permet une soumission efficace des données et une analyse rapide.
 
-Fonctionnalités principales :
+Fonctionnalités principales :\n
 Collecte des informations des patients via un formulaire interactif.
 Téléchargement d'images médicales pour analyse.
 Validation des champs du formulaire pour garantir l'exactitude des données.
