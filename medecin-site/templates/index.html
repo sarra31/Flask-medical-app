@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre un rendez-vous</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH2N2VUXslpXQnK9vUeQvT3+hkXFRkCpEEcC7cUw/91/3bX8+jmxQoHSF0DEw9UVaxTbw2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f9fc, #d1e7f0);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #1e3a8a;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .navbar .nav-links {
+    display: flex;
+    gap: 20px; /* Reduced gap */
+}
+
+.navbar .nav-links a {
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: #e0f2fe;
+    transform: translateY(-3px);
+}
+
+.navbar .nav-links a i {
+    font-size: 1.2rem;
+}
+        .navbar a {
+            color: #e0f2fe;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 15px;
+        }
+
+        .navbar a:hover {
+            color: #93c5fd;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #74b9ff, #0984e3, #6c5ce7, #fd79a8);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Appointment Form Container */
+        .appointment-container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px 30px;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+
+        input, select, textarea {
+            font-size: 1rem;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4c6ef5;
+            box-shadow: 0 0 5px rgba(76, 110, 245, 0.5);
+            outline: none;
+        }
+
+        button {
+            background: #4c6ef5;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            background: #364fc7;
+            transform: scale(1.05);
+        }
+
+/* Footer */
+footer {
+    background-color: #1e3a8a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    margin-top: auto;
+    font-size: 0.85rem; /* Slightly smaller font */
+}
+
+footer p {
+    margin: 5px 0; /* Reduced margin between paragraphs */
+}
+
+footer a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 0.9rem; /* Slightly smaller text for links */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #4c6ef5; /* Main button color for success */
+}
+
+.modal p {
+    font-size: 1rem;
+    color: #444; /* Darker text for contrast */
+    margin-bottom: 15px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    background: #4c6ef5; /* Match button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal button:hover {
+    background: #364fc7; /* Darker shade on hover */
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<div class="navbar">
+  <h2>Dr. Fatma Ben Ahmed</h2>
+  <div class="nav-links">
+    <a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Accueil</a>
+      <a href="#appointment"><i class="fas fa-calendar-alt"></i> Prendre rendez-vous</a>
+      {% if session['user_id'] %}
+          <a href="{{ url_for('liste_rdv') }}"><i class="fas fa-list"></i> Liste des rendez-vous</a>
+      {% else %}
+          <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+      {% endif %}
+      <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+  </div>
+</div>
+
+
+    <!-- Main Content -->
+    <div class="appointment-container" id="appointment">
+        <h1>Prendre un rendez-vous</h1>
+        <p>Planifiez votre consultation facilement avec le docteur Fatma Ben Ahmed.</p>
+        <form id="appointmentForm" action="/add-appointment" method="POST" enctype="multipart/form-data">
+            <label for="name">Nom et Prénom</label>
+            <input type="text" id="name" name="patient_name" placeholder="Votre nom complet" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="patient_email" placeholder="Votre email" required>
+
+            <label for="phone">Numéro de téléphone</label>
+            <input type="tel" id="phone" name="patient_phone" placeholder="Votre numéro de téléphone" required>
+
+            <label for="gender">Genre</label>
+            <select id="gender" name="patient_gender" required>
+                <option value="" disabled selected>Choisissez votre genre</option>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+            </select>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="appointment_date" required>
+            
+            <label for="time">Heure</label>
+            <input type="time" id="time" name="appointment_time" required>
+
+            <label for="reason">Raison du rendez-vous</label>
+            <textarea id="reason" name="appointment_reason" rows="3" placeholder="Expliquez brièvement" required></textarea>
+
+            <label for="photo">Photo X-Ray</label>
+            <input type="file" id="photo" name="patient_photo" accept="image/*"
+
+            <p class="note">* Tous les champs sont obligatoires</p>
+
+            <button type="submit">Prendre rendez-vous</button>
+        </form>
+    </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal">
+    <h2>Rendez-vous confirmé !</h2>
+    <p>Votre rendez-vous a été pris avec succès.</p>
+    <button id="closeModal">OK</button>
+</div>
+<div class="overlay" id="modalOverlay"></div>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <p><strong>© 2024 Dr. Fatma Ben Ahmed - Médecine Générale</strong></p>
+      <p>Adresse : 15 Avenue Habib Bourguiba, Tunis, Tunisie</p>
+      <p>Téléphone : <a href="tel:+21671234567">+216 71 234 567</a></p>
+      <p>Email : <a href="mailto:fatma.benahmed@medecin.tn">fatma.benahmed@medecin.tn</a></p>
+  </footer>
+  <script>
+    const appointmentForm = document.getElementById('appointmentForm');
+    const successModal = document.getElementById('successModal');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const closeModalButton = document.getElementById('closeModal');
+
+    // Show modal on form submit
+    appointmentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting
+        successModal.classList.add('active');
+        modalOverlay.classList.add('active');
+    });
+
+    // Close modal when clicking OK
+    closeModalButton.addEventListener('click', function() {
+        successModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+        appointmentForm.submit(); // Proceed with form submission
+    });
+</script>
+</body>
+</html>

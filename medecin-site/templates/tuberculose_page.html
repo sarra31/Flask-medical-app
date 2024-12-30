@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de la Tuberculose</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH2N2VUXslpXQnK9vUeQvT3+hkXFRkCpEEcC7cUw/91/3bX8+jmxQoHSF0DEw9UVaxTbw2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f9fc, #d1e7f0);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #1e3a8a;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #e0f2fe;
+            transform: translateY(-3px);
+        }
+
+        .navbar .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* Tuberculosis Form Section */
+        .tuberculosis-form-container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .tuberculosis-form-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .tuberculosis-form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+
+        input, select, button {
+            font-size: 1rem;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #4c6ef5;
+            box-shadow: 0 0 5px rgba(76, 110, 245, 0.5);
+            outline: none;
+        }
+
+        button {
+            background: #4c6ef5;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            background: #364fc7;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3a8a;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: auto;
+            font-size: 0.85rem;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h2>Dr. Fatma Ben Ahmed</h2>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Accueil</a>
+            <a href="{{ url_for('index') }}"><i class="fas fa-calendar-alt"></i> Prendre rendez-vous</a>
+            {% if session['user_id'] %}
+            <a href="{{ url_for('liste_rdv') }}"><i class="fas fa-list"></i> Liste des rendez-vous</a>
+            {% else %}
+            <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+            {% endif %}
+            <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+        </div>
+    </div>
+
+    <!-- Tuberculosis Form Container -->
+    <div class="tuberculosis-form-container">
+        <h1>Formulaire d'Information sur la Tuberculose</h1>
+        <form id="tuberculosisForm" action="/submit-tuberculosis-info" method="POST" enctype="multipart/form-data">
+            <label for="name">Nom et Prénom</label>
+            <input type="text" id="name" name="patient_name" placeholder="Votre nom complet" required>
+
+            <label for="age">Âge</label>
+            <input type="number" id="age" name="patient_age" placeholder="Votre âge" required>
+
+            <label for="gender">Genre</label>
+            <select id="gender" name="patient_gender" required>
+                <option value="" disabled selected>Choisissez votre genre</option>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+            </select>
+
+            <label for="photo">Photo X-Ray</label>
+            <input type="file" id="photo" name="patient_photo" accept="image/*" required>
+
+            <button type="submit">Soumettre</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p><strong>© 2024 Dr. Fatma Ben Ahmed - Médecine Générale</strong></p>
+        <p>Adresse : 15 Avenue Habib Bourguiba, Tunis, Tunisie</p>
+        <p>Téléphone : <a href="tel:+21671234567">+216 71 234 567</a></p>
+        <p>Email : <a href="mailto:fatma.benahmed@medecin.tn">fatma.benahmed@medecin.tn</a></p>
+    </footer>
+</body>
+</html>

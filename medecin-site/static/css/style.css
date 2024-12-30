@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f9fc, #d1e7f0);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #1e3a8a;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.navbar .nav-links {
+display: flex;
+gap: 20px; /* Reduced gap */
+}
+
+.navbar .nav-links a {
+color: #fff;
+font-size: 1rem;
+text-decoration: none;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: color 0.3s, transform 0.3s;
+}
+
+.navbar .nav-links a:hover {
+color: #e0f2fe;
+transform: translateY(-3px);
+}
+
+.navbar .nav-links a i {
+font-size: 1.2rem;
+}
+.navbar a {
+    color: #e0f2fe;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 15px;
+}
+
+.navbar a:hover {
+    color: #93c5fd;
+}
+
+/* Animated gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #74b9ff, #0984e3, #6c5ce7, #fd79a8);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Appointment Form Container */
+.appointment-container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: left;
+}
+
+input, select, textarea {
+    font-size: 1rem;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #4c6ef5;
+    box-shadow: 0 0 5px rgba(76, 110, 245, 0.5);
+    outline: none;
+}
+
+button {
+    background: #4c6ef5;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+    background: #364fc7;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+background-color: #1e3a8a;
+color: #fff;
+text-align: center;
+padding: 10px 20px;
+margin-top: auto;
+font-size: 0.85rem; /* Slightly smaller font */
+}
+
+footer p {
+margin: 5px 0; /* Reduced margin between paragraphs */
+}
+
+footer a {
+color: #93c5fd;
+text-decoration: none;
+font-size: 0.9rem; /* Slightly smaller text for links */
+}
+
+footer a:hover {
+text-decoration: underline;
+}
+
+footer .social-icons {
+margin-top: 10px;
+}
+
+footer .social-icons a {
+color: #93c5fd;
+margin: 0 8px; /* Reduced spacing between icons */
+font-size: 1.2rem; /* Smaller icon size */
+transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+color: #60a5fa;
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

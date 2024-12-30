@@ -1,0 +1,4 @@
+Python Version: 3.11.1 
+Flask Version: 3.0.3 
+TensorFlow Version: 2.18.0
+NumPy Version: 2.0.2

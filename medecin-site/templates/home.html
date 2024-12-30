@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH2N2VUXslpXQnK9vUeQvT3+hkXFRkCpEEcC7cUw/91/3bX8+jmxQoHSF0DEw9UVaxTbw2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f9fc, #d1e7f0);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #1e3a8a;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #e0f2fe;
+            transform: translateY(-3px);
+        }
+
+        .navbar .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('images/hero-image.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1e3a8a;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .btn-primary {
+            background-color: #4c6ef5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #364fc7;
+            transform: scale(1.05);
+        }
+
+        /* Home Content */
+        .home-content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .home-content h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .doctor-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .doctor-info img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1e3a8a;
+        }
+
+        .doctor-info div {
+            flex: 1;
+        }
+
+        .doctor-info h2 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+        }
+
+        .doctor-info p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Tuberculosis Info */
+        .tuberculosis-info {
+            margin-top: 40px;
+        }
+
+        .tuberculosis-info h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .tuberculosis-info p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .testimonials h3 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+        .testimonials-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .testimonial {
+            max-width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 40px 20px;
+            background-color: #e9f0f9;
+        }
+
+        .faq h3 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h4 {
+            font-size: 1.2rem;
+            color: #1e3a8a;
+        }
+
+        .faq-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background: #1e3a8a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta .btn-primary {
+            background-color: #4c6ef5;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .cta .btn-primary:hover {
+            background-color: #364fc7;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1e3a8a;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+#tuberculosis-info {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    text-align: left;
+    margin-top: 50px; /* Adds space between the bottom of the page content and this section */
+}
+
+#tuberculosis-info h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#tuberculosis-info p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#tuberculosis-info .btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    
+}
+
+#tuberculosis-info .btn:hover {
+    background-color: #0056b3;
+}
+  
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h2>Dr. Fatma Ben Ahmed</h2>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Accueil</a>
+            <a href="{{ url_for('index') }}"><i class="fas fa-calendar-alt"></i> Prendre rendez-vous</a>
+            {% if session['user_id'] %}
+            <a href="{{ url_for('liste_rdv') }}"><i class="fas fa-list"></i> Liste des rendez-vous</a>
+            {% else %}
+            <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+            {% endif %}
+            <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue chez Dr. Fatma Ben Ahmed</h1>
+            <p>Votre santé, notre priorité. Consultations médicales de qualité à Tunis.</p>
+            <a href="{{ url_for('index') }}" class="btn-primary">Prenez rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Home Content -->
+    <div class="home-content">
+        <h1>À propos de Dr. Fatma Ben Ahmed</h1>
+        <div class="doctor-info">
+            <img src="{{ url_for('static', filename='images/doctor-photo1.jpg') }}" alt="Dr. Fatma Ben Ahmed">
+            <div>
+                <h2>Dr. Fatma Ben Ahmed</h2>
+                <p>Spécialiste en Médecine Générale avec 10 ans d'expérience dans la prise en charge de patients. Passionnée par la prévention et la promotion de la santé.</p>
+            </div>
+        </div>
+
+        <div class="tuberculosis-info" id="tuberculosis-info">
+            <h3>Information sur la Tuberculose</h3>
+            <p>La tuberculose (TB) est une maladie infectieuse grave qui affecte principalement les poumons, mais peut également toucher d'autres parties du corps.
+               Elle est causée par la bactérie *Mycobacterium tuberculosis*.</p>
+    <ul>
+        <li><strong>Symptômes:</strong> Toux persistante, fièvre, sueurs nocturnes, perte de poids.</li>
+        <li><strong>Transmission:</strong> Par les gouttelettes en toussant ou en éternuant.</li>
+        <li><strong>Prévention:</strong> Vaccination, port de masque, traitements pour les personnes infectées.</li>
+    </ul>
+    <p>Il est important de consulter un médecin si vous avez des symptômes suspects.</p>
+            <a href="{{ url_for('tuberculose_page') }}" class="btn btn-primary">En savoir plus</a>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h3>Témoignages de nos patients</h3>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"Dr. Fatma Ben Ahmed est une professionnelle exemplaire. Son approche est bienveillante, et elle m'a aidé à gérer ma santé de manière proactive."</p>
+                <p>- Salah Salhi</p>
+            </div>
+            <div class="testimonial">
+                <p>"Une expérience exceptionnelle. Elle m'a expliqué le traitement de manière claire et m'a rassuré. Je recommande vivement." </p>
+                <p>- Ahmed Ben Ali</p>
+            </div>
+            <div class="testimonial">
+                <p>"J'ai été très impressionné par la qualité de l'accueil et le soin apporté. Je recommande fortement ce médecin."</p>
+                <p>- Salma Manssour</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h3>Questions fréquentes</h3>
+        <div class="faq-item">
+            <h4>Comment prendre un rendez-vous ?</h4>
+            <p>Vous pouvez prendre rendez-vous en ligne sur notre site ou en appelant notre secrétariat.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Quels sont vos horaires ?</h4>
+            <p>Nous sommes ouverts du lundi au vendredi, de 8h00 à 18h00.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <h2>Prêt à prendre rendez-vous ?</h2>
+        <a href="{{ url_for('index') }}" class="btn-primary">Prenez rendez-vous maintenant</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <p>&copy; 2024 Dr. Fatma Ben Ahmed. Tous droits réservés.</p>
+        <p>Adresse : 15 Avenue Habib Bourguiba, Tunis, Tunisie</p>
+        <p>Téléphone : <a href="tel:+21671234567">+216 71 234 567</a></p>
+        <p>Email : <a href="mailto:fatma.benahmed@medecin.tn">fatma.benahmed@medecin.tn</a></p>
+    </footer>
+
+</body>
+</html>
