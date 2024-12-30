@@ -27,4 +27,4 @@ Back-end : Flask (Python)
 
 Front-end : HTML, CSS, JavaScript
 
-Modèle IA : TensorFlow/Keras (ou tout autre framework d'apprentissage automatique)
+Modèle IA : TensorFlow/Keras 
