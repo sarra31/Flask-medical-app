@@ -24,5 +24,7 @@ Analyse par IA : Le serveur utilise un modèle de machine learning pour analyser
 Technologies utilisées :
 
 Back-end : Flask (Python)
+
 Front-end : HTML, CSS, JavaScript
+
 Modèle IA : TensorFlow/Keras (ou tout autre framework d'apprentissage automatique)
